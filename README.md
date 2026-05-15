@@ -114,7 +114,7 @@ docker run --name isaac-lab --entrypoint bash -it --gpus all -e "ACCEPT_EULA=Y" 
    sage
 ```
 
-and run the rest of the commands in the container.
+and run the rest **of the commands in the container.**
 
 ## Usage
 
@@ -180,9 +180,9 @@ python scripts/run_real.py \
 
 For detailed setup instructions, usage examples, and robot-specific configurations, refer to:
 
-- [UNITREE_REAL](docs/UNITREE_REAL.md) - Unitree G1 and H1-2 guide
-- [REALMAN_REAL](docs/REALMAN_REAL.md) - Realman WR75S guide
-- [LEROBOT_REAL](docs/LEROBOT_REAL.md) - LeRobot SO-101 guide
+- [UNITREE\_REAL](docs/UNITREE_REAL.md) - Unitree G1 and H1-2 guide
+- [REALMAN\_REAL](docs/REALMAN_REAL.md) - Realman WR75S guide
+- [LEROBOT\_REAL](docs/LEROBOT_REAL.md) - LeRobot SO-101 guide
 
 ## OSMO Workflow
 
@@ -208,7 +208,7 @@ The results can be downloaded using the following command:
 osmo dataset download sage ./
 ```
 
-> **Note:** The `osmo_workflow.yaml` file is configured to run simulations for all 3 robots (h1_2, g1, wr75s) with all AMASS motion files on the A40 node of the OSMO platform. If necessary, you can modify this configuration file to suit different resource requirements or to run a subset of robots/motion files.
+> **Note:** The `osmo_workflow.yaml` file is configured to run simulations for all 3 robots (h1\_2, g1, wr75s) with all AMASS motion files on the A40 node of the OSMO platform. If necessary, you can modify this configuration file to suit different resource requirements or to run a subset of robots/motion files.
 
 ## Data Format
 
@@ -231,8 +231,8 @@ Motion files contain joint trajectories retargeted to specific robots. Located i
 Generated in `output/sim/{robot_name}/{source}/{motion_name}/`:
 
 - **control.csv**: Command positions sent to robot (**radians**)
-- **state_motor.csv**: Actual joint states (positions, velocities, torques) (**radians**)
-- **joint_list.txt**: Joint configuration
+- **state\_motor.csv**: Actual joint states (positions, velocities, torques) (**radians**)
+- **joint\_list.txt**: Joint configuration
 
 **CSV Format:**
 
@@ -246,14 +246,14 @@ CONTROL/STATE_MOTOR,0.0,"[angle1, angle2, ...]","[vel1, vel2, ...]","[torque1, t
 Generated in `output/real/{robot_name}/{source}/{motion_name}/`:
 
 - **control.csv**: Commands sent to real robot (**radians**)
-- **state_motor.csv**: Measured joint states (**radians**)
-- **state_base.csv**: IMU/base measurements
+- **state\_motor.csv**: Measured joint states (**radians**)
+- **state\_base.csv**: IMU/base measurements
 - **event.csv**: Event timestamps
 
 **Key Differences from Simulation:**
 
 - Timestamps in microseconds (vs. seconds)
-- Additional columns in state_motor.csv: temperatures, currents
+- Additional columns in state\_motor.csv: temperatures, currents
 - Type names: `Control/StateMotor` (vs. `CONTROL/STATE_MOTOR`)
 - Irregular timing due to real-world constraints
 
@@ -268,6 +268,7 @@ The complete dataset containing both Unitree and RealMan robot data is available
 This dataset captures complex upper-body motions of the H1-2 humanoid robot under varying payload conditions (0 kg, 1 kg, 2 kg, and 3 kg). The motions are adapted from the open-source AMASS dataset and carefully post-processed to ensure reliable execution on the real robot. Each trajectory includes corresponding simulation replays, providing paired sim-real data for gap analysis and compensation model training.
 
 **Data Variants:**
+
 - **Standard split**: Training and test sets with upper-body motions (`train.npz`, `test.npz`)
 - **Gait variations**: Upper-body motions paired with different lower-body gaits (locomotion, squatting, upper-only) to enhance data diversity
 - **Whole-body extension**: A subset featuring full-body coordinated motions for comprehensive sim2real research
@@ -324,7 +325,7 @@ This section provides methods for extending our current real data collection pip
 **2. Build New Config**
 
 - Refer to `sage/real_unitree/unitree_configs.py` to organize the required structure for the new robot model
-- Be sure to confirm that the p_gains & d_gains for each joint are compatible with the physical robot, as they significantly impact data collection quality
+- Be sure to confirm that the p\_gains & d\_gains for each joint are compatible with the physical robot, as they significantly impact data collection quality
 - Place the new config under the path `sage/Your_robot`
 
 **3. Update Main File**
@@ -359,7 +360,7 @@ Each robot in `assets.py` can specify:
 >
 > This design allows robot-specific defaults while enabling per-run customization.
 
-**Supported Robots:** h1_2, g1, wr75s
+**Supported Robots:** h1\_2, g1, wr75s
 
 **Motion Sources:** amass
 
@@ -387,3 +388,4 @@ If you use this framework in your research, please cite:
   url={https://github.com/isaac-sim2real/sage}
 }
 ```
+
